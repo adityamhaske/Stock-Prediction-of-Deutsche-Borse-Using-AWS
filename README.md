@@ -10,7 +10,7 @@ security. The contents of the Deutsche Börse Public Dataset, from Eurex trading
 
 ## 3. PROPOSED ARCHITECTURE: 
 
-![architecture](/images/pic.png)
+![architecture](/pic.png)
 
 ## 4. AWS Technologies:
  1.  AWS S3 
