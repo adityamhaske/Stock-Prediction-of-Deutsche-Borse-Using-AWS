@@ -1,7 +1,7 @@
 # Stock Prediction on Deutsche Börse using AWS
 
-## 1. INTRODUCTION
-The Deutsche Börse Public Eurex Data Set consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems. It provides the initial, lowest, highest, final price, and volume for every minute of the trading day and tradable security. The contents of the Deutsche Börse Public Dataset, from the Eurex trading engines, are defined in the data dictionary. This Eurex dataset contains trade data relating to derivative security trades. Each row represents one minute of trade activity for each security, following the Open/High/Low/Close (OHLC) format, with the number of trades and traded contracts. The EMR Cluster has been used with a PySpark instance. PySpark on the EMR cluster has been used to propose and develop a model, and this model has been trained on the large dataset. AWS Sagemaker has been used to merge files and carry out exploratory data analysis; it has also been used to perform time series analysis of data. AWS Glue has been used to store the data into the database to connect to AWS QuickSight, this is used to visualize and explore the data, and create an informative data analytics dashboard.
+## 1. INTRODUCTION:
+The Stock Prediction on Deutsche Börse using AWS project utilizes the Deutsche Börse Public Eurex Data Set, which consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems. The dataset provides valuable information such as the initial, lowest, highest, and final prices, as well as the trading volume for every minute of the trading day. This project aims to develop a predictive model for stock prices using AWS services like EMR, Sagemaker, Glue, and QuickSight.
 
 
 ## 2. DATASET DESCRIPTION:
@@ -10,21 +10,23 @@ security. The contents of the Deutsche Börse Public Dataset, from Eurex trading
 
 ## 3. PROPOSED ARCHITECTURE: 
 
+The project's architecture involves leveraging various AWS technologies to process and analyze the dataset effectively. The architecture diagram below illustrates the flow of data and services used:
+
 ![architecture](/pic.png)
 
 ## 4. AWS Technologies:
- 1.  AWS S3 
- 2.  AWS Glue
- 3.  AWS EMR
- 4. AWS Sagemaker
- 5. AWS QuickSight
 
-## 5. EDA: Data Extraction, Data Wrangling, Preprocessing
+ 1. AWS S3 Used for storing the dataset and intermediate files.
+ 2. AWS Glue: Employed for data extraction, data wrangling, and preprocessing tasks, transforming the dataset into a queryable format.
+ 3. AWS EMR: Utilized with a PySpark instance to propose and develop the predictive model. The large dataset is trained using PySpark on the EMR cluster.
+ 4. AWS Sagemaker: Employed for merging files, conducting exploratory data analysis, and performing time series analysis.
+ 5. AWS QuickSight: Connected to the Glue database to visualize and explore the data, creating an informative data analytics dashboard.
 
-The data set used from the S3 bucket of Deutsche Borse contains features which are both Categorical and Numeric in nature. Performed various preprocessing techniques like removing duplicate data points, dropping columns that are not useful for analyzing, converting categorical into numerical with one hot encoding and so on. The dataset has all the fields as a string when read from the s3 bucket and we converted it to respective datatypes , ie. took Numerical data such as Strike Price, Start Price, Max Price, Min Price, and End Price and converted them from strings to float to perform mathematical calculations. Filtered the data frame to date format using the filter function. The remaining values were put in a data frame. Label Encoder is generally used to normalize labels and transform them to non-numerical labels; we used fit_transform() to fit label encoder and return encoded labels. Followed by performing Correlation between the attributes and calculating Correlation coefficients used to measure the strength of the relationship between two variables. Used Heatmap to visualize the correlation between in, 1.0 being the highest correlation and -1 being the least correlated value. Plotted Bar Graph between the highest correlation values (Put or Call and Contract Generation Number) & plotted histogram between Average and StrikePrice of each StartPrice. The correlation between Start Price and Contract Generation Number is 0.25. A correlation 0.50 correlation was found between Start Price and Contract Generation Number.
+## 5. Exploratory Data Analysis (EDA): Data Extraction, Data Wrangling, Preprocessing:
+
+The EDA phase involved several preprocessing techniques to prepare the dataset for analysis. These techniques include removing duplicate data points, dropping irrelevant columns, and converting categorical features into numerical ones using one-hot encoding. Numeric data fields, such as Strike Price, Start Price, Max Price, Min Price, and End Price, were converted from strings to floats for mathematical calculations. The dataset was filtered to a date format using the filter function, and the remaining values were stored in a data frame. Label encoding was applied to normalize labels and transform them into non-numerical labels using the fit_transform() function. Correlation analysis was performed between attributes, and correlation coefficients were calculated to measure the relationship strength between variables. The correlation results were visualized using a heatmap, where a correlation coefficient of 1.0 represents the highest correlation, and -1 indicates the least correlated value. Furthermore, bar graphs were plotted to examine the highest correlation values, such as Put or Call and Contract Generation Number, and a histogram was generated to visualize the relationship between Average and Strike Price for each Start Price. Notably, a correlation of 0.25 was observed between Start Price and Contract Generation Number, while a correlation of 0.50 was found between Start Price and Contract Generation Number.
 
 
-## 6.  GLUE JOB SETUP:
-In order to be able to deal with a large amount of data in the s3 Deutsche Borse bucket, AWS Glue Crawlers and Jobs were created to send all the files from the s3 bucket to a Glue database ultimately cleaning the code so data so that it could be queried. The first crawler that was created was made to send the data that was pulled from the s3 bucket and send it to a database so that the data could be easily queried when needed. In order to fully set up this crawler, it was essential to configure IAM roles to read from/write to the s3 bucket. The crawler contained the locations of the CSV files, glue database name, and a table that would map all the values. When observing the newly created table, it was evident that there was a problem with formatting the columns, and the query took an extended amount of time. In order to rectify this, a Glue ETL job was created to transform the CSV files to parquet. Besides the advantage that parquet files provide a better query performance, they also take up much less storage than CSV files. The
- 
-Glue ETL job contained configurations to map the columns to their names instead of labeled as col0, col1, etc. These new parquet files were written into a new folder where all the parquet files were stored. Finally, the last crawler was created to send the newly created/formatted parquet files into a new table. This data was then used for creating the visualizations using AWS Quicksight, shown later in this report.
+## 6. AWS Glue Job Setup:
+
+To handle the large amount of data in the s3 Deutsche Borse bucket, AWS Glue Crawlers and Jobs were created to clean and transform the data for querying purposes. The initial crawler was designed to send the data from the s3 bucket to a Glue database for easy querying. IAM roles were configured to allow read/write access to the s3 bucket. However, issues with column formatting and lengthy query execution time were observed when examining the resulting table. To address these issues, a Glue ETL job was created to transform the CSV files to the more efficient Parquet format. This job included configurations to map the columns to their appropriate names, improving query performance and reducing storage space compared to CSV files. The transformed Parquet files were written to a new folder for storage. Finally, another crawler was created to load the transformed Parquet files into a new table, which served as the basis for creating visualizations using AWS QuickSight.
