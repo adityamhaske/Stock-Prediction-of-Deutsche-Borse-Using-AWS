@@ -1,7 +1,7 @@
 # Stock Prediction on Deutsche Börse using AWS
 
 ## 1. INTRODUCTION:
-The Stock Prediction on Deutsche Börse using AWS project utilizes the Deutsche Börse Public Eurex Data Set, which consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems. The dataset provides valuable information such as the initial, lowest, highest, and final prices and the trading volume for every minute of the trading day. This project aims to develop a predictive model for stock prices using AWS services like EMR, Sagemaker, Glue, and QuickSight.
+The Stock Prediction on Deutsche Börse using AWS project utilizes the Deutsche Börse Public Eurex Data Set, which consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems. The dataset provides valuable information such as the initial, lowest, highest, and final prices and the trading volume for every minute of the trading day. This project aims to develop a predictive model for stock prices using AWS services like EMR, Sagemaker, Glue, and QuickSight. 
 
 
 ## 2. DATASET DESCRIPTION:
