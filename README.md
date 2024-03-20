@@ -1,11 +1,11 @@
-# Stock Prediction on Deutsche Börse using AWS
+# Stock Prediction on Deutsche Borse using AWS
 
 ## 1. INTRODUCTION:
 The Stock Prediction on Deutsche Börse using AWS project utilizes the Deutsche Börse Public Eurex Data Set, which consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems. The dataset provides valuable information such as the initial, lowest, highest, and final prices and the trading volume for every minute of the trading day. This project aims to develop a predictive model for stock prices using AWS services like EMR, Sagemaker, Glue, and QuickSight. 
 
 
 ## 2. DATASET DESCRIPTION:
-The dataset is sourced from the AWS Registry and contains 45.5 million data points with 3,230,161 rows and 20 columns. It consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems, providing information on the initial price, lowest price, highest price, final price, volume, and tradable security for each minute of the trading day. The data follows the Open/High/Low/Close (OHLC) format and includes the number of trades and traded contracts. The dataset has been cleaned, resulting in 3,230,161 rows and 20 columns. For the purpose of this project, the EUR currency data within the date range [date_from = "2021-01-01" date_to = "2022-01-01"] has been selected for prediction and modeling. The EUR data consists of 87,409 data points, and the goal is to predict the start price of EUR entries in the Deutsche Börse data based on the best-fitting ARCH and GARCH prediction models.
+The dataset is sourced from the AWS Registry and contains 45.5 million data points with 3,230,161 rows and 20 columns. It consists of real-time trade data aggregated at one-minute intervals from the Eurex trading systems, providing information on the initial price, lowest price, highest price, final price, volume, and tradable security for each minute of the trading day. The data follows the Open/High/Low/Close (OHLC) format and includes the number of trades and traded contracts. The dataset has been cleaned, resulting in 3,230,161 rows and 20 columns. For this project, the EUR currency data within the date range [date_from = "2021-01-01" date_to = "2022-01-01"] has been selected for prediction and modeling. The EUR data consists of 87,409 data points, and the goal is to predict the start price of EUR entries in the Deutsche Börse data based on the best-fitting ARCH and GARCH prediction models.
 
 ## 3. PROPOSED ARCHITECTURE: 
 
