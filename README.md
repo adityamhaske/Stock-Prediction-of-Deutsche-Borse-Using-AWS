@@ -46,7 +46,7 @@ To handle the large amount of data in the s3 Deutsche Börse bucket, AWS Glue Cr
 - Another crawler was created to load the transformed Parquet files into a new table, which served as the basis for creating visualizations using AWS QuickSight.
 
 With these steps, the data was prepared and transformed for further analysis and visualization using QuickSight.
-
+ 
 ## 6. Conclusion:
 
 In conclusion, the Stock Prediction on Deutsche Börse using AWS project utilizes the Deutsche Börse Public Eurex Data Set to develop a predictive model for stock prices. Through the utilization of various AWS technologies such as S3, Glue, EMR, Sagemaker, and QuickSight, the project aims to extract, preprocess, analyze, and visualize the dataset effectively.
